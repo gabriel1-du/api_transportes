@@ -32,7 +32,4 @@ public class EmpresaTransporte {
     @Column(name = "nombre_empresa", nullable = false, length = 30)
     private String nombreEmpresa;
 
-    @OneToMany(mappedBy = "empresaTransporte")
-    @JsonIgnore
-    private List<Transportistas> transportistas;
 }

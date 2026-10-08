@@ -1,6 +1,7 @@
 package com.example.api_transporte.RestClient;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Component;
 import org.springframework.web.client.RestClient;
 
@@ -10,6 +11,7 @@ import com.example.api_transporte.DTO.RestClientDTO.UsuarioExternoDTO;
 public class UsuarioClient {
 
     @Autowired
+    @Qualifier("usuariosRestClient")
     private RestClient usuariosRestClient;
 
     public UsuarioExternoDTO getUsuarioById(Long id_usuario) {

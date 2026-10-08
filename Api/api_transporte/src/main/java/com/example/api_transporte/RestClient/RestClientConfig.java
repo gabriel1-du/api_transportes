@@ -21,4 +21,11 @@ public class RestClientConfig {
                 .build();
     }
 
+    @Bean
+    public RestClient usuariosRestClient() {
+        return RestClient.builder()
+                .baseUrl("http://localhost:8081/api/usuarios") // Ajusta el puerto/ruta de tu API de usuarios
+                .build();
+    }
+
 }
