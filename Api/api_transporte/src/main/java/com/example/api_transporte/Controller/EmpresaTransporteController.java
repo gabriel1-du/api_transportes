@@ -33,7 +33,7 @@ public class EmpresaTransporteController {
     }
 
     @GetMapping("/{id_empresa}")
-    public ResponseEntity<?> getEmpresaTransById(@PathVariable Long id_empresa) {
+    public ResponseEntity<?> getEmpresaTransById(@PathVariable("id_empresa") Long id_empresa) {
         try {
             EmpresaTransporte empresa = empresaTransporteService.getEmpresaTransByid(id_empresa);
             return ResponseEntity.ok(empresa);
@@ -58,7 +58,7 @@ public class EmpresaTransporteController {
 
     // metodos PUT
     @PutMapping("/{id_empresa}")
-    public ResponseEntity<?> putEmpresaTrans(@RequestBody EmpresaTransporte empresa, @PathVariable Long id_empresa) {
+    public ResponseEntity<?> putEmpresaTrans(@RequestBody EmpresaTransporte empresa, @PathVariable("id_empresa") Long id_empresa) {
         try {
             EmpresaTransporte empresa_actualizada = empresaTransporteService.putEmpresaTransporte(id_empresa, empresa);
             return ResponseEntity.ok(empresa_actualizada);
