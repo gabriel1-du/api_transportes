@@ -29,29 +29,29 @@ public class Transportistas {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_transportista")
-    private Long idTransportista;
+    private Long id_transportista;
 
     @ManyToOne
     @JoinColumn(name = "id_empresa_transporte", nullable = false)
-    private EmpresaTransporte empresaTransporte;
+    private EmpresaTransporte empresa_transporte;
 
     @Column(name = "p_nombre", nullable = false, length = 10)
-    private String pNombre;
+    private String p_nombre;
 
     @Column(name = "s_nombre", nullable = false, length = 10)
-    private String sNombre;
+    private String s_nombre;
 
     @Column(name = "p_apellido", nullable = false, length = 20)
-    private String pApellido;
+    private String p_apellido;
 
     @Column(name = "s_apellido", nullable = false, length = 20)
-    private String sApellido;
+    private String s_apellido;
 
     @Column(name = "cuerpo_rut", nullable = false, length = 9)
-    private String cuerpoRut;
+    private String cuerpo_rut;
 
     @Column(name = "dv_rut", nullable = false, length = 1)
-    private String dvRut;
+    private String dv_rut;
 
     @OneToMany(mappedBy = "transportista")
     @JsonIgnore

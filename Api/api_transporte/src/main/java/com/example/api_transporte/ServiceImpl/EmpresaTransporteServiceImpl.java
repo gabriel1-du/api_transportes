@@ -41,7 +41,7 @@ public class EmpresaTransporteServiceImpl implements EmpresaTransporteService {
         EmpresaTransporte empresa_existente = empresaTransporteRepository.findById(id_empresa)
                 .orElseThrow(() -> new RuntimeException("Empresa de transporte no encontrada con id: " + id_empresa));
 
-        empresa_existente.setNombreEmpresa(empresa.getNombreEmpresa());
+        empresa_existente.setNombre_empresa(empresa.getNombre_empresa());
 
         return empresaTransporteRepository.save(empresa_existente);
     }

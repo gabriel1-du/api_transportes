@@ -26,11 +26,11 @@ public class Pedidos {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_pedido")
-    private Long idPedido;
+    private Long id_pedido;
 
     // Referencia lógica externa (microservicio de usuarios), sin FK física
     @Column(name = "id_usuario_cliente", nullable = false)
-    private Long idUsuarioCliente;
+    private Long id_usuario_cliente;
 
     @ManyToOne
     @JoinColumn(name = "id_transportista", nullable = false)
@@ -38,13 +38,13 @@ public class Pedidos {
 
     // Referencia lógica externa (microservicio de boletas), sin FK física
     @Column(name = "id_boleta", nullable = false)
-    private Long idBoleta;
+    private Long id_boleta;
 
     @Column(name = "fecha_de_envio", nullable = false)
-    private LocalDateTime fechaDeEnvio;
+    private LocalDateTime fecha_de_envio;
 
     @Column(name = "fecha_de_entrega")
-    private LocalDateTime fechaDeEntrega;
+    private LocalDateTime fecha_de_entrega;
 
     @Column(name = "entregado", nullable = false)
     private Boolean entregado = false;

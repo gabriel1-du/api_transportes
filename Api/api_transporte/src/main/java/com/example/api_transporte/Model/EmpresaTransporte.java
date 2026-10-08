@@ -27,9 +27,12 @@ public class EmpresaTransporte {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_empresa_transporte")
-    private Long idEmpresaTransporte;
+    private Long id_empresa_transporte;
 
     @Column(name = "nombre_empresa", nullable = false, length = 30)
-    private String nombreEmpresa;
+    private String nombre_empresa;
 
+    @OneToMany(mappedBy = "empresa_transporte")
+    @JsonIgnore
+    private List<Transportistas> transportistas;
 }
