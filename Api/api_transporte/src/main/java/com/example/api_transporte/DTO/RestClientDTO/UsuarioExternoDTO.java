@@ -11,6 +11,7 @@ public class UsuarioExternoDTO {
     private String p_apellido;
     private String s_apellido;
     private String correo_elec;
+    private String dv_rut;
     private String rut;
 
 }
