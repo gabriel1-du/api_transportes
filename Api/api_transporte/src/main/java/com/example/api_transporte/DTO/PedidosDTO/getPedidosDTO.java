@@ -8,11 +8,11 @@ public class getPedidosDTO {
     //Id
     private Long id_pedido;
     private Long id_usuario;
-    private Long nombre_usuario;
+    private String nombres;
+    private String apellidos;
     private String rut_completo;
     private String fecha_envio;
     private String fecha_entregado;
     private boolean entregado;
-
 
 }
