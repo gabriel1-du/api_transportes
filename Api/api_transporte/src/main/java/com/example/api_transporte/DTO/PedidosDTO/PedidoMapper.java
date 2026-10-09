@@ -41,7 +41,8 @@ public class PedidoMapper {
         if (usuario != null) {
             dto.setNombres(usuario.getP_nombre() + " " + usuario.getS_nombre());
             dto.setApellidos(usuario.getP_apellido() + " " + usuario.getS_apellido());
-            dto.setRut_completo(usuario.getRut() + "-" + usuario.getDv_rut());
+            // El rut de la API ya incluye el dígito verificador (ej: "19876543-2")
+            dto.setRut_completo(usuario.getRut());
         } else {
             dto.setNombres("Desconocido");
             dto.setApellidos("Desconocido");
@@ -86,6 +87,12 @@ public class PedidoMapper {
         }
 
         // Construir la fecha de envio a partir de anio, mes, dia y hora
+        if (dto.getHora() == null || dto.getHora() < 0 || dto.getHora() > 23) {
+            throw new RuntimeException("La hora debe estar entre 0 y 23");
+        }
+        if (dto.getMes() == null || dto.getMes() < 1 || dto.getMes() > 12) {
+            throw new RuntimeException("El mes debe estar entre 1 y 12");
+        }
         LocalDateTime fechaEnvio = LocalDateTime.of(
                 dto.getAnio(),
                 dto.getMes(),

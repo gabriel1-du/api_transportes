@@ -17,14 +17,14 @@ public class RestClientConfig {
     @Bean
     public RestClient boletasRestClient() {
         return RestClient.builder()
-                .baseUrl("http://localhost:8084/api/boletas") // Endpoint base de usuarios
+                .baseUrl("http://localhost:8081/api/boletas") // Endpoint base de boletas
                 .build();
     }
 
     @Bean
     public RestClient usuariosRestClient() {
         return RestClient.builder()
-                .baseUrl("http://localhost:8081/api/usuarios") // Ajusta el puerto/ruta de tu API de usuarios
+                .baseUrl("http://localhost:8080/api/usuariosApi") // Endpoint real de la API de usuarios
                 .build();
     }
 
