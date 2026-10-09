@@ -49,10 +49,26 @@ public class TransportistaMapper {
         nuevoTranspor.setS_apellido(dto.getS_apellido());
 
         //Nuevo objeto getDTO
-     
-
         return this.EntitytoGetDTO(nuevoTranspor);
-        
+
+    }
+
+
+    public Transportistas putDTOtoEntity(putTransportistaDTO dto){
+
+        Transportistas transportista = new Transportistas();
+        EmpresaTransporte empresa = new EmpresaTransporte();
+        empresa.setId_empresa_transporte(dto.getId_empresa_transporte());
+
+        //Setteo de los atributos
+        transportista.setP_nombre(dto.getP_nombre());
+        transportista.setS_nombre(dto.getS_nombre());
+        transportista.setP_apellido(dto.getP_apellido());
+        transportista.setS_apellido(dto.getS_apellido());
+        transportista.setEmpresa_transporte(empresa);
+
+        return transportista;
+
     }
 
 }

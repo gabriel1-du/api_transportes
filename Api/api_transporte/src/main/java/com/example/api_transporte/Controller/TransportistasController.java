@@ -16,8 +16,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.api_transporte.DTO.EmpresaTransporteDTO.getTransportistaDTO;
+import com.example.api_transporte.DTO.EmpresaTransporteDTO.putTransportistaDTO;
 import com.example.api_transporte.DTO.EmpresaTransporteDTO.saveTransportista;
 import com.example.api_transporte.DTO.EmpresaTransporteDTO.TransportistaMapper;
+import com.example.api_transporte.Model.EmpresaTransporte;
 import com.example.api_transporte.Model.Transportistas;
 import com.example.api_transporte.Service.TransportistasService;
 
@@ -59,8 +61,19 @@ public class TransportistasController {
     @PostMapping("/")
     public ResponseEntity<?> saveTransportista(@RequestBody saveTransportista saveDTO) {
         try {
-            Transportistas transportistaGuardado = transportistasService.saveTransportista(
-                    transportistaMapper.EntitytoSaveDTO(saveDTO));
+            EmpresaTransporte empresa = new EmpresaTransporte();
+            empresa.setId_empresa_transporte(saveDTO.getId_empresa_transporte());
+
+            Transportistas transportistaNuevo = new Transportistas();
+            transportistaNuevo.setCuerpo_rut(saveDTO.getCuerpo_rut());
+            transportistaNuevo.setDv_rut(saveDTO.getDv_rut());
+            transportistaNuevo.setP_nombre(saveDTO.getP_nombre());
+            transportistaNuevo.setS_nombre(saveDTO.getS_nombre());
+            transportistaNuevo.setP_apellido(saveDTO.getP_apellido());
+            transportistaNuevo.setS_apellido(saveDTO.getS_apellido());
+            transportistaNuevo.setEmpresa_transporte(empresa);
+
+            Transportistas transportistaGuardado = transportistasService.saveTransportista(transportistaNuevo);
             getTransportistaDTO save = transportistaMapper.EntitytoGetDTO(transportistaGuardado);
             return ResponseEntity.status(HttpStatus.CREATED).body(save);
 
@@ -71,10 +84,10 @@ public class TransportistasController {
 
     // metodos PUT
     @PutMapping("/{id_transportista}")
-    public ResponseEntity<?> putTransportista(@RequestBody saveTransportista saveDTO, @PathVariable Long id_transportista) {
+    public ResponseEntity<?> putTransportista(@RequestBody putTransportistaDTO putDTO, @PathVariable Long id_transportista) {
         try {
             Transportistas transportistaActualizado = transportistasService.putTransportista(
-                    id_transportista, transportistaMapper.EntitytoSaveDTO(saveDTO));
+                    id_transportista, transportistaMapper.putDTOtoEntity(putDTO));
             getTransportistaDTO transportista_actualizado = transportistaMapper.EntitytoGetDTO(transportistaActualizado);
             return ResponseEntity.ok(transportista_actualizado);
 

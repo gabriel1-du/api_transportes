@@ -1,8 +1,10 @@
 package com.example.api_transporte.DTO.EmpresaTransporteDTO;
 
+import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.Data;
 
-@Data 
+@Data
+@JsonPropertyOrder({"id_transportista", "nombres", "apellidos", "rut_completo"})
 public class getTransportistaDTO {
 
     private Long id_transportista;
