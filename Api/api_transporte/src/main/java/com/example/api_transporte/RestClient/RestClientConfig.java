@@ -17,7 +17,7 @@ public class RestClientConfig {
     @Bean
     public RestClient boletasRestClient() {
         return RestClient.builder()
-                .baseUrl("http://localhost:8081/api/boletas") // Endpoint base de boletas
+                .baseUrl("http://localhost:8081/api/boletasApi") // Endpoint base de boletas
                 .build();
     }
 
