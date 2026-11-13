@@ -1,0 +1,45 @@
+services:
+  api-transporte:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    ports:
+      - "8084:8084"
+    depends_on:
+      mysql-db:
+        condition: service_healthy
+    env_file:
+      - .env
+    # Sobrescribe el .env para que el contenedor use la BD local de este compose
+    # (el .env apunta al RDS de AWS con usuario admin) y escuche en el puerto publicado.
+    environment:
+      SERVER_PORT: 8084
+      DB_HOST: mysql-db
+      DB_PORT: 3306
+      DB_USER: root
+      DB_PASSWORD: hola123
+    # Si falla, reintenta como maximo 3 veces: evita el bucle infinito de reinicios.
+    restart: "on-failure:3"
+  mysql-db:
+    image: mysql:8.0
+    container_name: api-transporte-local
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: hola123
+      MYSQL_DATABASE: transporte_db
+    ports:
+      - "3307:3306"
+    volumes:
+      - db_data_local:/var/lib/mysql
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    healthcheck:
+      # Se usa 127.0.0.1 (TCP) para no marcar "healthy" durante la inicializacion
+      # temporal de MySQL, que corre solo por socket.
+      test: ["CMD", "mysqladmin", "ping", "-h", "127.0.0.1", "-uroot", "-phola123"]
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start_period: 30s
+
+volumes:
+  db_data_local:
