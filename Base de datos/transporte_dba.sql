@@ -1,9 +1,11 @@
+CREATE DATABASE IF NOT EXISTS transporte_db;
+use transporte_db;
+
 
 CREATE TABLE EMPRESA_TRANSPORTE (
     id_empresa_transporte BIGINT AUTO_INCREMENT PRIMARY KEY,
     nombre_empresa VARCHAR(30) NOT NULL
 );
-
 
 CREATE TABLE TRANSPORTISTAS (
     id_transportista BIGINT AUTO_INCREMENT PRIMARY KEY,
